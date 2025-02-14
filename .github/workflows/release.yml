@@ -1,0 +1,35 @@
+name: Release Tapestry Connectors
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Connectors
+        run: |
+          for dir in */; do
+            if [[ -f "$dir/plugin-config.json" ]]; then
+              dir_name="${dir%/}"
+              output_file="${dir_name}.tapestry"
+              (cd "$dir" && zip -qr "../$output_file" .)
+            fi
+          done
+
+      - name: Upload Connectors
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+
+          gh release create "$tag" \
+            --title="$tag" \
+            --draft \
+            *.tapestry
