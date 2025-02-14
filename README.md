@@ -1,8 +1,13 @@
 # Tapestry Connectors
 
+![GitHub Release (Latest)](https://img.shields.io/github/manifest-json/v/otaviocc/tapestry-connectors?color=573E7A&logo=github&style=for-the-badge)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Tapestry Connectors is an open-source project providing additional connectors for [Tapestry](https://github.com/TheIconfactory/Tapestry), an iOS app for displaying information from multiple sources in a unified way.
+
+Do these connectors improve your life in any way? If so, you can show your appreciation by buying me a coffee ❤️ ☕️
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/otaviocc)
 
 ## Available Connectors
 
