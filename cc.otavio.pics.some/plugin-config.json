@@ -1,0 +1,11 @@
+{
+  "id": "cc.otavio.pics.some",
+  "display_name": "some.pics",
+  "default_color": "gray",
+  "icon": "https://cdn.cache.lol/favicons/omg.lol/apple-touch-icon.png",
+  "provides_attachments": true,
+  "check_interval": 300,
+  "site": "https://some.pics",
+  "service_name": "some.pics",
+  "item_style": "post"
+}
