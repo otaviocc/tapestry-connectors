@@ -1,0 +1,11 @@
+{
+  "id": "cc.otavio.lol.status",
+  "display_name": "status.lol",
+  "default_color": "purple",
+  "icon": "https://cdn.cache.lol/favicons/omg.lol/apple-touch-icon.png",
+  "provides_attachments": true,
+  "check_interval": 300,
+  "site": "https://status.lol",
+  "service_name": "status.lol",
+  "item_style": "post"
+}
