@@ -1,0 +1,11 @@
+{
+  "id": "cc.otavio.photos.glass",
+  "display_name": "Glass",
+  "default_color": "gray",
+  "icon": "https://s3.eu-central-2.wasabisys.com/mastodonworld/accounts/avatars/109/364/562/010/526/521/original/8d630fd7402dcfc4.jpeg",
+  "provides_attachments": true,
+  "check_interval": 300,
+  "site": "https://glass.photo",
+  "service_name": "Glass",
+  "item_style": "post"
+}

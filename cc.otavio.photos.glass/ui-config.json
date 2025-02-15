@@ -1,0 +1,17 @@
+{
+	"inputs": [
+		{
+			"name": "inputUsername",
+			"prompt": "Username",
+			"type": "text",
+			"placeholder": "tom"
+		},
+		{
+			"name": "inputShowDescriptions",
+			"type": "switch",
+			"prompt": "Show Descriptions",
+			"value": "on",
+			"placeholder": "When disabled, hides photo descriptions."
+		}
+	]
+}

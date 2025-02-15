@@ -1,0 +1,19 @@
+{
+	"variables": [
+		{
+			"name": "inputUsername",
+			"value": "tom",
+			"title": "Tom Watson"
+		},
+		{
+			"name": "inputUsername",
+			"value": "sborsje",
+			"title": "Stefan Borsje"
+		},
+		{
+			"name": "inputUsername",
+			"value": "dordio",
+			"title": "Joao Dordio"
+		}
+	]
+}
