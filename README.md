@@ -15,18 +15,23 @@ Currently, the following connectors are available:
 
 - **status.lol** (`cc.otavio.lol.status`) - Integrates with [status.lol](https://status.lol) to display user status updates.
 - **some.pics** (`cc.otavio.pics.some`) - Connects to [some.pics](https://some.pics) to display images from the service.
+- **Glass** (`cc.otavio.photos.glass`) - Integrates with [Glass](https://glass.photos) to display images from a given user from the service.
 
 ### status.lol
 
-![omg_social](https://github.com/user-attachments/assets/7befa2f4-5812-4096-8b1d-26ee4587d2ce)
+![](https://github.com/user-attachments/assets/7befa2f4-5812-4096-8b1d-26ee4587d2ce)
 
 ### some.pics
 
-![omg_photos](https://github.com/user-attachments/assets/4552015f-092a-4b16-a210-0330b2b0ea02)
+![](https://github.com/user-attachments/assets/4552015f-092a-4b16-a210-0330b2b0ea02)
 
 ### status.lol and some.pics in a single timeline
 
-![omg_both](https://github.com/user-attachments/assets/1704a444-8074-4187-9502-cca6cd22f409)
+![](https://github.com/user-attachments/assets/1704a444-8074-4187-9502-cca6cd22f409)
+
+### Glass
+
+![](https://github.com/user-attachments/assets/fb578fe3-b58d-4d4f-b522-48ef8c0d4cd1)
 
 ## Installation
 
