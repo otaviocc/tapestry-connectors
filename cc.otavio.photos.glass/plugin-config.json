@@ -7,5 +7,6 @@
   "check_interval": 300,
   "site": "https://glass.photo",
   "service_name": "Glass",
-  "item_style": "post"
+  "item_style": "post",
+  "needs_verification": true
 }

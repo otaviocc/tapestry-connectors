@@ -2,6 +2,14 @@ function identify() {
   setIdentifier(null)
 }
 
+function verify() {
+	const verification = {
+		displayName: "Glass @" + inputUsername
+	}
+
+	processVerification(verification);
+}
+
 function load() {
   loadAsync()
     .then(processResults)
