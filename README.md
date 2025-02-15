@@ -9,6 +9,10 @@ Do these connectors improve your life in any way? If so, you can show your appre
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/otaviocc)
 
+## Disclaimer
+
+I am not affiliated with, nor do I work for, any of the companies or services for which I have created connectors. These connectors are independently developed as part of this open-source project. Additionally, I have no affiliation with The Iconfactory, the creators of Tapestry.
+
 ## Available Connectors
 
 Currently, the following connectors are available:
