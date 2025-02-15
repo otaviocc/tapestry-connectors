@@ -1,1 +1,1 @@
-Shows pictures from [Glass](https://glass.photos).
+Shows pictures from [Glass](https://glass.photo).
