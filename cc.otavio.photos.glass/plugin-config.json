@@ -1,12 +1,12 @@
 {
-  "id": "cc.otavio.photos.glass",
-  "display_name": "Glass",
-  "default_color": "gray",
-  "icon": "https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.photos.glass/icon.png",
-  "provides_attachments": true,
-  "check_interval": 300,
-  "site": "https://glass.photo",
-  "service_name": "Glass",
-  "item_style": "post",
-  "needs_verification": true
+    "id": "cc.otavio.photos.glass",
+    "display_name": "Glass",
+    "default_color": "gray",
+    "icon": "https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.photos.glass/icon.png",
+    "provides_attachments": true,
+    "check_interval": 300,
+    "site": "https://glass.photo",
+    "service_name": "Glass",
+    "item_style": "post",
+    "needs_verification": true
 }

@@ -1,11 +1,11 @@
 {
-  "id": "cc.otavio.lol.status",
-  "display_name": "status.lol",
-  "default_color": "purple",
-  "icon": "https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.lol.status/icon.png",
-  "provides_attachments": true,
-  "check_interval": 300,
-  "site": "https://status.lol",
-  "service_name": "status.lol",
-  "item_style": "post"
+    "id": "cc.otavio.lol.status",
+    "display_name": "status.lol",
+    "default_color": "purple",
+    "icon": "https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.lol.status/icon.png",
+    "provides_attachments": true,
+    "check_interval": 300,
+    "site": "https://status.lol",
+    "service_name": "status.lol",
+    "item_style": "post"
 }
