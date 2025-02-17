@@ -11,7 +11,7 @@ function load() {
 async function loadAsync() {
 	const text = await sendRequest(site + "/rss");
 	const obj = xmlParse(text);
-	const regex = /src="(https:\/\/cdn\.some\.pics\/[^"]+)"(?:.|\n)*?Shared by <a href="https:\/\/[^"]+">@([^<]+)<\/a>/;
+	const regex = /<img\s+[^>]*width="(\d+)"\s+height="(\d+)"\s+[^>]*src="([^"]+)"[^>]*>.*?<a\s+href="[^"]*">@([^<]+)<\/a>/;
 	const results = []
 
 	for (const entry of obj.rss.channel.item) {
@@ -20,8 +20,10 @@ async function loadAsync() {
 
 		if (!match) continue;
 
-		const imageURL = match[1];
-		const author = match[2];
+		const width = match[1];
+		const height = match[2];
+		const imageURL = match[3];
+		const author = match[4];
 		const item = Item.createWithUriDate(entry.guid, date);
 
 		if (inputShowDescriptions == "on") {
@@ -35,8 +37,7 @@ async function loadAsync() {
 
 		const attachment = MediaAttachment.createWithUrl(imageURL);
 		attachment.mimeType = "image";
-		attachment.aspectFit = {width: 400, height: 300};
-		attachment.focalPoint = {x: 0, y: 0};
+		attachment.aspectSize = {width: width, height: height};
 		item.attachments = [attachment];
 
 		results.push(item);
