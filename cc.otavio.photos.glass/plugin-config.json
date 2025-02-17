@@ -1,7 +1,7 @@
 {
     "id": "cc.otavio.photos.glass",
     "display_name": "Glass",
-    "default_color": "gray",
+    "default_color": "gold",
     "icon": "https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.photos.glass/icon.png",
     "provides_attachments": true,
     "check_interval": 300,
