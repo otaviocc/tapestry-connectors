@@ -23,7 +23,10 @@ async function loadAsync() {
 		const imageURL = match[1];
 		const author = match[2];
 		const item = Item.createWithUriDate(entry.guid, date);
-		item.body = entry.title;
+
+		if (inputShowDescriptions == "on") {
+			item.body = entry.title;
+		}
 
 		const identity = Identity.createWithName(author);
 		identity.name = "@" + author;
