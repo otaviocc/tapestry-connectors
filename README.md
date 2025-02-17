@@ -48,6 +48,17 @@ You can download the latest release of each connector from the [Releases page](h
 3. Open Tapestry.
 4. Navigate to the Tapestry Settings and add the plugin as a connector.
 
+### Updating a Connector in Tapestry
+
+To update a connector in Tapestry, follow these steps:
+
+1. Download the latest release of the connector from the [Releases](https://github.com/otaviocc/tapestry-connectors/releases) page.
+2. Save the downloaded file in the Files app.
+3. Open Tapestry.
+4. Navigate to the Tapestry Settings and add the new version of the connector.
+
+**There's no need to remove the previously installed version before adding the new one**. Tapestry will automatically handle the migration from the old version to the new one. Important: If you delete the existing connector before installing the new version, all feeds using that connector will also be deleted.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
