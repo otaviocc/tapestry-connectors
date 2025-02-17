@@ -3,11 +3,17 @@ function identify() {
 }
 
 function verify() {
-	const verification = {
-		displayName: "Glass @" + inputUsername
-	}
+	sendRequest(`https://glass.photo/${inputUsername}/rss`)
+	.then(_ => {
+		const verification = {
+			displayName: "Glass @" + inputUsername
+		}
 
-	processVerification(verification);
+		processVerification(verification);
+	})
+	.catch(_ => {
+		processError(`No user ${inputUsername} found on Glass.`);
+	});
 }
 
 function load() {
@@ -17,7 +23,7 @@ function load() {
 }
 
 async function loadAsync() {
-	const text = await sendRequest("https://glass.photo/" + inputUsername + "/rss");
+	const text = await sendRequest(`https://glass.photo/${inputUsername}/rss`);
 	const obj = xmlParse(text);
 	const regex = /<img\s+src="([^"]+)"\s+width="(\d+)"\s+height="(\d+)"/;
 	const results = []
