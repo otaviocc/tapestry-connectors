@@ -28,6 +28,9 @@ async function loadAsync() {
 	const regex = /<img\s+src="([^"]+)"\s+width="(\d+)"\s+height="(\d+)"/;
 	const results = []
 
+	const nameRegex = /Photo feed of (.*?) on Glass/;
+	const nameMatch = obj.rss.channel.title.match(nameRegex);
+
 	for (const entry of obj.rss.channel.item) {
 		const date = new Date(entry.pubDate);
 		const match = entry["content:encoded"].match(regex);
@@ -45,7 +48,11 @@ async function loadAsync() {
 		}
 
 		const identity = Identity.createWithName(inputUsername);
-		identity.name = "@" + inputUsername;
+		if (nameMatch && nameMatch[1]) {
+			identity.name = nameMatch[1];
+		}
+		identity.username = "@" + inputUsername;
+		identity.uri = obj.rss.channel.link;
 		item.author = identity;
 
 		const attachment = MediaAttachment.createWithUrl(imageURL);
