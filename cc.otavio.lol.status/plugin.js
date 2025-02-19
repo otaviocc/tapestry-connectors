@@ -17,7 +17,7 @@ async function loadAsync() {
 
         const identity = Identity.createWithName(entry.author.name);
         identity.name = "@" + entry.author.name;
-        identity.uri = site + "/" + entry.author.name;
+        identity.uri = `https://${entry.author.name}.omg.lol`;
         identity.avatar = "https://profiles.cache.lol/" + entry.author.name + "/picture";
 
         const item = Item.createWithUriDate(entry.id, date);
