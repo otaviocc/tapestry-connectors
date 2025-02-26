@@ -8,5 +8,6 @@
     "site": "https://glass.photo",
     "service_name": "Glass",
     "item_style": "post",
-    "needs_verification": true
+    "needs_verification": true,
+	"version": 2
 }

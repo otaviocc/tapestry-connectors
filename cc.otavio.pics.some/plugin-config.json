@@ -7,5 +7,6 @@
     "check_interval": 300,
     "site": "https://some.pics",
     "service_name": "some.pics",
-    "item_style": "post"
+    "item_style": "post",
+	"version": 2
 }
