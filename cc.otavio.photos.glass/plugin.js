@@ -1,67 +1,139 @@
+/**
+ * Clears any existing identifier
+ */
 function identify() {
-	setIdentifier(null)
+  setIdentifier(null);
 }
 
+/**
+ * Verifies if the provided username exists on Glass
+ */
 function verify() {
-	sendRequest(`https://glass.photo/${inputUsername}/rss`)
-	.then(_ => {
-		const verification = {
-			displayName: "Glass @" + inputUsername
-		}
+  const userUrl = `https://glass.photo/${inputUsername}/rss`;
 
-		processVerification(verification);
-	})
-	.catch(_ => {
-		processError(`No user ${inputUsername} found on Glass.`);
-	});
+  sendRequest(userUrl)
+    .then(() => {
+      processVerification({
+        displayName: `Glass @${inputUsername}`
+      });
+    })
+    .catch(() => {
+      processError(`No user ${inputUsername} found on Glass.`);
+    });
 }
 
+/**
+ * Loads user content from Glass
+ */
 function load() {
-	loadAsync()
-	.then(processResults)
-	.catch(processError)
+  loadAsync()
+    .then(processResults)
+    .catch(processError);
 }
 
+/**
+ * Fetches and processes the RSS feed from Glass
+ * @returns {Promise<Array>} Array of processed items
+ */
 async function loadAsync() {
-	const text = await sendRequest(`https://glass.photo/${inputUsername}/rss`);
-	const obj = xmlParse(text);
-	const regex = /<img\s+src="([^"]+)"\s+width="(\d+)"\s+height="(\d+)"/;
-	const results = []
+  try {
+    const userURL = `https://glass.photo/${inputUsername}/rss`;
+    const text = await sendRequest(userURL);
+    const parsedXML = xmlParse(text);
 
-	const nameRegex = /Photo feed of (.*?) on Glass/;
-	const nameMatch = obj.rss.channel.title.match(nameRegex);
+    const results = processRSSFeed(parsedXML);
+    return results;
+  } catch (error) {
+    throw error;
+  }
+}
 
-	for (const entry of obj.rss.channel.item) {
-		const date = new Date(entry.pubDate);
-		const match = entry["content:encoded"].match(regex);
+/**
+ * Processes the RSS feed data into structured items
+ * @param {Object} parsedXML - The parsed XML data
+ * @returns {Array} Array of processed items
+ */
+function processRSSFeed(parsedXML) {
+  const results = [];
+  const channel = parsedXML.rss.channel;
+  const items = channel.item || [];
 
-		if (!match) continue;
+  // Extract author name from channel title
+  const nameRegex = /Photo feed of (.*?) on Glass/;
+  const nameMatch = channel.title.match(nameRegex);
+  const authorName = nameMatch?.[1] || inputUsername;
 
-		const imageURL = match[1];
-		const width = match[2];
-		const height = match[3];
+  // Create identity object
+  const identity = createIdentity(authorName, channel.link);
 
-		const item = Item.createWithUriDate(entry.guid, date);
+  // Process each item in the feed
+  for (const entry of items) {
+    const item = processRSSItem(entry, identity);
+    if (item) {
+      results.push(item);
+    }
+  }
 
-		if (inputShowDescriptions == "on") {
-			item.body = entry.title;
-		}
+  return results;
+}
 
-		const identity = Identity.createWithName(inputUsername);
-		if (nameMatch && nameMatch[1]) {
-			identity.name = nameMatch[1];
-		}
-		identity.username = "@" + inputUsername;
-		identity.uri = obj.rss.channel.link;
-		item.author = identity;
+/**
+ * Creates an identity object for the author
+ * @param {string} name - The author's name
+ * @param {string} uri - The author's URI
+ * @returns {Object} Identity object
+ */
+function createIdentity(name, uri) {
+  const identity = Identity.createWithName(inputUsername);
+  identity.name = name;
+  identity.username = `@${inputUsername}`;
+  identity.uri = uri;
+  return identity;
+}
 
-		const attachment = MediaAttachment.createWithUrl(imageURL);
-		attachment.mimeType = "image/jpg";
-		attachment.aspectSize = {width: width, height: height};
-		item.attachments = [attachment];
+/**
+ * Processes a single RSS item
+ * @param {Object} entry - The RSS item
+ * @param {Object} identity - The author's identity
+ * @returns {Object|null} Processed item or null if invalid
+ */
+function processRSSItem(entry, identity) {
+  const imageRegex = /<img\s+src="([^"]+)"\s+width="(\d+)"\s+height="(\d+)"/;
+  const match = entry["content:encoded"]?.match(imageRegex);
 
-		results.push(item);
-	}
+  if (!match) return null;
 
-	return results;
+  const [, imageURL, width, height] = match;
+  const date = new Date(entry.pubDate);
+
+  // Create item
+  const item = Item.createWithUriDate(entry.guid, date);
+
+  // Add description if enabled
+  if (inputShowDescriptions === "on") {
+    item.body = entry.title;
+  }
+
+  // Set author
+  item.author = identity;
+
+  // Add media attachment
+  const attachment = createMediaAttachment(imageURL, width, height);
+  item.attachments = [attachment];
+
+  return item;
+}
+
+/**
+ * Creates a media attachment object
+ * @param {string} url - The image URL
+ * @param {number} width - The image width
+ * @param {number} height - The image height
+ * @returns {Object} Media attachment object
+ */
+function createMediaAttachment(url, width, height) {
+  const attachment = MediaAttachment.createWithUrl(url);
+  attachment.mimeType = "image/jpg";
+  attachment.aspectSize = { width, height };
+  return attachment;
 }

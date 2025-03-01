@@ -1,29 +1,72 @@
+/**
+ * Clears any existing identifier
+ */
 function identify() {
-    setIdentifier(null)
+  setIdentifier(null);
 }
 
+/**
+ * Loads content from the feed
+ */
 function load() {
-    loadAsync()
+  loadAsync()
     .then(processResults)
-    .catch(processError)
+    .catch(processError);
 }
 
+/**
+ * Fetches and processes the feed
+ * @returns {Promise<Array>} Array of processed items
+ */
 async function loadAsync() {
-    const text = await sendRequest(site + "/feed");
-    const obj = xmlParse(text);
+  try {
+    const feedURL = `${site}/feed`;
+    const text = await sendRequest(feedURL);
+    const parsedXML = xmlParse(text);
 
-    return obj.feed.entry.map(entry => {
-        const date = new Date(entry.published);
+    return processFeedEntries(parsedXML.feed.entry);
+  } catch (error) {
+    throw error;
+  }
+}
 
-        const identity = Identity.createWithName(entry.author.name);
-        identity.name = "@" + entry.author.name;
-        identity.uri = `https://${entry.author.name}.omg.lol`;
-        identity.avatar = "https://profiles.cache.lol/" + entry.author.name + "/picture";
+/**
+ * Processes feed entries into structured items
+ * @param {Array} entries - The feed entries to process
+ * @returns {Array} Array of processed items
+ */
+function processFeedEntries(entries = []) {
+  return entries.map(entry => createItemFromEntry(entry));
+}
 
-        const item = Item.createWithUriDate(entry.id, date);
-        item.body = entry.content;
-        item.author = identity;
+/**
+ * Creates an item from a feed entry
+ * @param {Object} entry - The feed entry
+ * @returns {Object} Processed item
+ */
+function createItemFromEntry(entry) {
+  const date = new Date(entry.published);
+  const identity = createIdentity(entry.author);
 
-        return item;
-    });
+  const item = Item.createWithUriDate(entry.id, date);
+  item.body = entry.content;
+  item.author = identity;
+
+  return item;
+}
+
+/**
+ * Creates an identity object for the author
+ * @param {Object} author - The author information
+ * @returns {Object} Identity object
+ */
+function createIdentity(author) {
+  const username = author.name;
+  const identity = Identity.createWithName(username);
+
+  identity.name = `@${username}`;
+  identity.uri = `https://${username}.omg.lol`;
+  identity.avatar = `https://profiles.cache.lol/${username}/picture`;
+
+  return identity;
 }
