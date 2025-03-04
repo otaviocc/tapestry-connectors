@@ -1,13 +1,17 @@
 {
-	"sites": [
-        "glass.photo"
-    ],
-	"url": [
-		{
-			"extract": "/glass.photo/([^/]+)/",
-			"variable": "inputUsername"
-		}
-    ],
-	"html": [],
-	"xml": []
+  "sites": [
+    "glass.photo"
+  ],
+  "url": [
+    {
+      "extract": "/glass.photo/([^/]+)/",
+      "variable": "inputUsername"
+    }
+  ],
+  "html": [
+
+  ],
+  "xml": [
+
+  ]
 }

@@ -1,11 +1,11 @@
 {
-	"inputs": [
-		{
-			"name": "inputShowDescriptions",
-			"type": "switch",
-			"prompt": "Show Descriptions",
-			"value": "on",
-			"placeholder": "When disabled, hides photo descriptions."
-		}
-	]
+  "inputs": [
+    {
+      "name": "inputShowDescriptions",
+      "type": "switch",
+      "prompt": "Show Descriptions",
+      "value": "on",
+      "placeholder": "When disabled, hides photo descriptions."
+    }
+  ]
 }

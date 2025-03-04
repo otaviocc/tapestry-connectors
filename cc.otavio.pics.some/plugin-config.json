@@ -1,12 +1,12 @@
 {
-    "id": "cc.otavio.pics.some",
-    "display_name": "some.pics",
-    "default_color": "gray",
-    "icon": "https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.pics.some/icon.png",
-    "provides_attachments": true,
-    "check_interval": 300,
-    "site": "https://some.pics",
-    "service_name": "some.pics",
-    "item_style": "post",
-	"version": 3
+  "id": "cc.otavio.pics.some",
+  "display_name": "some.pics",
+  "default_color": "gray",
+  "icon": "https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.pics.some/icon.png",
+  "provides_attachments": true,
+  "check_interval": 300,
+  "site": "https://some.pics",
+  "service_name": "some.pics",
+  "item_style": "post",
+  "version": 3
 }
