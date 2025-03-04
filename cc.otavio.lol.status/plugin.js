@@ -36,7 +36,7 @@ async function loadAsync() {
  * @returns {Array} Array of processed items
  */
 function processFeedEntries(entries = []) {
-  return entries.map(entry => createItemFromEntry(entry));
+  return entries.map(createItemFromEntry);
 }
 
 /**
