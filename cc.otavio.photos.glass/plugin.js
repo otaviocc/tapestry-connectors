@@ -88,6 +88,7 @@ function createIdentity(name, uri) {
   identity.name = name;
   identity.username = `@${inputUsername}`;
   identity.uri = uri;
+  identity.avatar = `https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.photos.glass/icon.png`;
   return identity;
 }
 
