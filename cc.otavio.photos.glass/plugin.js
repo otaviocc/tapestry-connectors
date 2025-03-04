@@ -41,8 +41,7 @@ async function loadAsync() {
     const text = await sendRequest(userURL);
     const parsedXML = xmlParse(text);
 
-    const results = processRSSFeed(parsedXML);
-    return results;
+    return processRSSFeed(parsedXML);
   } catch (error) {
     throw error;
   }
@@ -85,10 +84,12 @@ function processRSSFeed(parsedXML) {
  */
 function createIdentity(name, uri) {
   const identity = Identity.createWithName(inputUsername);
+
   identity.name = name;
   identity.username = `@${inputUsername}`;
   identity.uri = uri;
   identity.avatar = `https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.photos.glass/icon.png`;
+
   return identity;
 }
 
@@ -134,7 +135,9 @@ function processRSSItem(entry, identity) {
  */
 function createMediaAttachment(url, width, height) {
   const attachment = MediaAttachment.createWithUrl(url);
+
   attachment.mimeType = "image/jpg";
   attachment.aspectSize = { width, height };
+
   return attachment;
 }

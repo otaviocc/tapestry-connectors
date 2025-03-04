@@ -87,6 +87,7 @@ function createItemFromEntry(entry, imageRegex) {
  */
 function createIdentity(username) {
   const identity = Identity.createWithName(username);
+
   identity.name = `@${username}`;
   identity.uri = `https://${username}.omg.lol`;
   identity.avatar = `https://profiles.cache.lol/${username}/picture`;
@@ -104,6 +105,7 @@ function createIdentity(username) {
  */
 function createMediaAttachment(url, width, height, altText) {
   const attachment = MediaAttachment.createWithUrl(url);
+
   attachment.mimeType = "image";
   attachment.aspectSize = { width, height };
   attachment.text = altText;

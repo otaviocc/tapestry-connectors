@@ -47,8 +47,8 @@ function processFeedEntries(entries = []) {
 function createItemFromEntry(entry) {
   const date = new Date(entry.published);
   const identity = createIdentity(entry.author);
-
   const item = Item.createWithUriDate(entry.id, date);
+
   item.body = entry.content;
   item.author = identity;
 
