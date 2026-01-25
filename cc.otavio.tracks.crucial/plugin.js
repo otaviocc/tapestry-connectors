@@ -51,7 +51,7 @@ function createItemFromEntry(entry) {
 
   const item = Item.createWithUriDate(entry.url || entry.id, date);
 
-  item.body = buildItemBody(songDetails);
+  item.body = buildItemBody(songDetails, entry.content_html);
   item.author = createIdentity(author);
 
   if (songDetails.artwork_url) {
@@ -62,15 +62,47 @@ function createItemFromEntry(entry) {
 }
 
 /**
- * Builds the item body with artist and song info
+ * Builds the item body with artist, song, and user commentary
  * @param {Object} songDetails - The song details object
+ * @param {string} contentHtml - The HTML content from the feed
  * @returns {string} Formatted body text
  */
-function buildItemBody(songDetails) {
+function buildItemBody(songDetails, contentHtml) {
   const artist = songDetails.artist || "Unknown Artist";
   const song = songDetails.song || "Unknown Track";
+  const trackLine = `<div><p>${song} by ${artist}</p></div>`;
 
-  return `${artist} - ${song}`;
+  const userContent = extractUserContent(contentHtml);
+
+  if (userContent) {
+    return `${trackLine}<div>${userContent}</div>`;
+  }
+
+  return trackLine;
+}
+
+/**
+ * Extracts user-generated content from the HTML
+ * @param {string} html - The content_html from the feed
+ * @returns {string|null} User content or null if not present
+ */
+function extractUserContent(html) {
+  if (!html) return null;
+
+  const divMatch = html.match(/<div>([^]*?)<\/div>\s*<p>Posted by/);
+
+  if (!divMatch) return null;
+
+  let content = divMatch[1];
+
+  content = content
+    .replace(/<(?!\/?(em|p))[^>]+>/g, "")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&amp;/g, "&")
+    .trim();
+
+  return content || null;
 }
 
 /**
