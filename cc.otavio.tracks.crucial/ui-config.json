@@ -1,0 +1,11 @@
+{
+  "inputs": [
+    {
+      "name": "inputShowCommentary",
+      "type": "switch",
+      "prompt": "Show Commentary",
+      "value": "on",
+      "placeholder": "Display user commentary and prompts alongside track info"
+    }
+  ]
+}

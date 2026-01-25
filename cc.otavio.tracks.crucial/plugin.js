@@ -72,10 +72,12 @@ function buildItemBody(songDetails, contentHtml) {
   const song = songDetails.song || "Unknown Track";
   const trackLine = `<div><p>${song} by ${artist}</p></div>`;
 
-  const userContent = extractUserContent(contentHtml);
+  if (inputShowCommentary === "on") {
+    const userContent = extractUserContent(contentHtml);
 
-  if (userContent) {
-    return `${trackLine}<div>${userContent}</div>`;
+    if (userContent) {
+      return `${trackLine}<div>${userContent}</div>`;
+    }
   }
 
   return trackLine;
