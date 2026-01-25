@@ -1,0 +1,12 @@
+{
+  "id": "cc.otavio.tracks.crucial",
+  "display_name": "Crucial Tracks",
+  "default_color": "orange",
+  "icon": "https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.tracks.crucial/icon.png",
+  "provides_attachments": true,
+  "check_interval": 300,
+  "site": "https://app.crucialtracks.org",
+  "service_name": "Crucial Tracks",
+  "item_style": "post",
+  "version": 1
+}
