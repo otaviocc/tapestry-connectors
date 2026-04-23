@@ -80,15 +80,13 @@ function createItemFromEntry(entry) {
 
   const attachments = [];
 
-  if (songDetails.artwork_url) {
-    attachments.push(
-      createMediaAttachment(songDetails.artwork_url)
-    );
-  }
-
   if (songDetails.preview_url) {
     attachments.push(
       createAudioAttachment(songDetails.preview_url, songDetails)
+    );
+  } else if (songDetails.artwork_url) {
+    attachments.push(
+      createMediaAttachment(songDetails.artwork_url)
     );
   }
 
@@ -188,6 +186,10 @@ function createAudioAttachment(url, songDetails) {
 
   attachment.mimeType = "audio";
   attachment.text = `${song} by ${artist}`;
+
+  if (songDetails.artwork_url) {
+    attachment.thumbnail = songDetails.artwork_url;
+  }
 
   return attachment;
 }
