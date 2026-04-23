@@ -78,8 +78,22 @@ function createItemFromEntry(entry) {
   item.body = buildItemBody(songDetails, entry.content_html);
   item.author = createIdentity(author);
 
+  const attachments = [];
+
   if (songDetails.artwork_url) {
-    item.attachments = [createMediaAttachment(songDetails.artwork_url)];
+    attachments.push(
+      createMediaAttachment(songDetails.artwork_url)
+    );
+  }
+
+  if (songDetails.preview_url) {
+    attachments.push(
+      createAudioAttachment(songDetails.preview_url, songDetails)
+    );
+  }
+
+  if (attachments.length > 0) {
+    item.attachments = attachments;
   }
 
   return item;
@@ -157,6 +171,23 @@ function createMediaAttachment(url) {
 
   attachment.mimeType = "image/jpeg";
   attachment.aspectSize = { width: 600, height: 600 };
+
+  return attachment;
+}
+
+/**
+ * Creates a media attachment for the 30-second audio preview
+ * @param {string} url - The preview audio URL
+ * @param {Object} songDetails - The song details for the accessibility label
+ * @returns {Object} Media attachment object
+ */
+function createAudioAttachment(url, songDetails) {
+  const attachment = MediaAttachment.createWithUrl(url);
+  const artist = songDetails.artist || "Unknown Artist";
+  const song = songDetails.song || "Unknown Track";
+
+  attachment.mimeType = "audio";
+  attachment.text = `${song} by ${artist}`;
 
   return attachment;
 }
