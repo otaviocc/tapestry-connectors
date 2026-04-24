@@ -72,10 +72,10 @@ function createItemFromEntry(entry) {
   const date = new Date(entry.date_published);
   const songDetails = entry._song_details || {};
   const author = entry.authors?.[0] || {};
-
   const item = Item.createWithUriDate(entry.url || entry.id, date);
+  const youTubeVideoId = extractYouTubeVideoId(entry.content_html);
 
-  item.body = buildItemBody(songDetails, entry.content_html);
+  item.body = buildItemBody(songDetails, entry.content_html, youTubeVideoId);
   item.author = createIdentity(author);
 
   const attachments = [];
@@ -83,6 +83,10 @@ function createItemFromEntry(entry) {
   if (songDetails.preview_url) {
     attachments.push(
       createAudioAttachment(songDetails.preview_url, songDetails)
+    );
+  } else if (youTubeVideoId) {
+    attachments.push(
+      createYouTubeAttachment(youTubeVideoId, songDetails)
     );
   } else if (songDetails.artwork_url) {
     attachments.push(
@@ -103,20 +107,23 @@ function createItemFromEntry(entry) {
  * @param {string} contentHtml - The HTML content from the feed
  * @returns {string} Formatted body text
  */
-function buildItemBody(songDetails, contentHtml) {
+function buildItemBody(songDetails, contentHtml, youTubeVideoId) {
   const artist = songDetails.artist || "Unknown Artist";
   const song = songDetails.song || "Unknown Track";
   const trackLine = `<div><p>${song} by ${artist}</p></div>`;
+  const embed = youTubeVideoId
+    ? `<iframe id="player" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/${youTubeVideoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+    : "";
 
   if (inputShowCommentary === "on") {
     const userContent = extractUserContent(contentHtml);
 
     if (userContent) {
-      return `${trackLine}<div>${userContent}</div>`;
+      return `${embed}${trackLine}<div>${userContent}</div>`;
     }
   }
 
-  return trackLine;
+  return `${embed}${trackLine}`;
 }
 
 /**
@@ -190,6 +197,41 @@ function createAudioAttachment(url, songDetails) {
   if (songDetails.artwork_url) {
     attachment.thumbnail = songDetails.artwork_url;
   }
+
+  return attachment;
+}
+
+/**
+ * Extracts a YouTube video ID from the feed item's content_html
+ * @param {string} html - The content_html from the feed
+ * @returns {string|null} The video ID, or null if not a YouTube-backed entry
+ */
+function extractYouTubeVideoId(html) {
+  if (!html) return null;
+
+  const match = html.match(/(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+
+  return match ? match[1] : null;
+}
+
+/**
+ * Creates a link attachment for a YouTube-backed track
+ * @param {string} videoId - The YouTube video ID
+ * @param {Object} songDetails - The song details for title fallback
+ * @returns {Object} Link attachment object
+ */
+function createYouTubeAttachment(videoId, songDetails) {
+  const url = `https://www.youtube.com/watch?v=${videoId}`;
+  const attachment = LinkAttachment.createWithUrl(url);
+  const artist = songDetails.artist || "Unknown Artist";
+  const song = songDetails.song || "Unknown Track";
+
+  attachment.type = "video.other";
+  attachment.title = `${song} by ${artist}`;
+  attachment.subtitle = "Watch on YouTube";
+  attachment.siteName = "YouTube";
+  attachment.image = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  attachment.aspectSize = { width: 480, height: 360 };
 
   return attachment;
 }
