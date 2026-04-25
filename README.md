@@ -24,19 +24,19 @@ Currently, the following connectors are available:
 
 ### status.lol
 
-![](https://github.com/user-attachments/assets/7befa2f4-5812-4096-8b1d-26ee4587d2ce)
+<img width="900" height="900" alt="IMG_1304" src="https://github.com/user-attachments/assets/254b2696-73a3-45b8-ae17-47c1019b5130" />
 
 ### some.pics
 
-![](https://github.com/user-attachments/assets/4552015f-092a-4b16-a210-0330b2b0ea02)
-
-### status.lol and some.pics in a single timeline
-
-![](https://github.com/user-attachments/assets/1704a444-8074-4187-9502-cca6cd22f409)
+<img width="900" height="900" alt="IMG_1305" src="https://github.com/user-attachments/assets/6975ed9a-26a6-49fa-a92e-ba672254dd79" />
 
 ### Glass
 
-![](https://github.com/user-attachments/assets/fb578fe3-b58d-4d4f-b522-48ef8c0d4cd1)
+<img width="900" height="900" alt="IMG_1307" src="https://github.com/user-attachments/assets/a6fa0009-9bb6-4ab2-b691-3215d2541329" />
+
+## Crucial Tracks
+
+<img width="900" height="900" alt="IMG_1306" src="https://github.com/user-attachments/assets/4738e841-a8b3-43dd-b508-34053d97f305" />
 
 ## Installation
 
