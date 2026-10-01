@@ -1,0 +1,15 @@
+{
+  "id": "cc.otavio.lol.status.account",
+  "display_name": "status.lol Account",
+  "default_color": "purple",
+  "icon": "https://raw.githubusercontent.com/otaviocc/tapestry-connectors/refs/heads/main/cc.otavio.lol.status.account/icon.png",
+  "provides_attachments": true,
+  "check_interval": 300,
+  "site": "https://status.lol",
+  "service_name": "status.lol",
+  "item_style": "post",
+  "needs_verification": true,
+  "verify_variables": true,
+  "minimum_app_version": "2.0",
+  "version": 1
+}

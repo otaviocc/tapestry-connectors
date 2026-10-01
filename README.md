@@ -18,6 +18,7 @@ I am not affiliated with, nor do I work for, any of the companies or services fo
 Currently, the following connectors are available:
 
 - **status.lol** (`cc.otavio.lol.status`) - Integrates with [status.lol](https://status.lol) to display user status updates.
+- **status.lol Account** (`cc.otavio.lol.status.account`) - Displays your own [status.lol](https://status.lol) statuses and posts new ones from Tapestry's composer using your omg.lol API key (requires Tapestry 2.0).
 - **some.pics** (`cc.otavio.pics.some`) - Connects to [some.pics](https://some.pics) to display images from the service.
 - **Glass** (`cc.otavio.photos.glass`) - Integrates with [Glass](https://glass.photo) to display images from a given user from the service.
 - **Crucial Tracks** (`cc.otavio.tracks.crucial`) - Connects to [Crucial Tracks](https://www.crucialtracks.org) to display public track shares.
