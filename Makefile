@@ -1,13 +1,15 @@
-.PHONY: all clean
-
-CONNECTORS := $(wildcard cc.otavio.*)
+CONNECTORS := $(patsubst %/plugin-config.json,%,$(wildcard cc.otavio.*/plugin-config.json))
 TAPESTRY_FILES := $(addsuffix .tapestry,$(CONNECTORS))
+
+.PHONY: all clean $(TAPESTRY_FILES)
 
 all: $(TAPESTRY_FILES)
 
-%.tapestry: %/plugin-config.json
+# Always rebuilt from scratch, so deleted files don't linger in the archive
+$(TAPESTRY_FILES): %.tapestry:
 	@echo "Building $@"
-	@cd $* && zip -qr ../$@ .
+	@rm -f $@
+	@cd $* && zip -qr ../$@ . -x '.DS_Store'
 
 clean:
 	@echo "Cleaning up"
