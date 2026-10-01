@@ -1,0 +1,17 @@
+{
+  "feeds": [
+    {
+      "id": "newStatus",
+      "name": "New Status",
+      "icon": "square.and.pencil",
+      "role": "compose"
+    }
+  ],
+  "drafts": [
+    {
+      "id": "send",
+      "name": "Post",
+      "icon": "paperplane"
+    }
+  ]
+}

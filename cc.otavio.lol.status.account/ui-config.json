@@ -1,0 +1,16 @@
+{
+  "inputs": [
+    {
+      "name": "inputAddress",
+      "prompt": "omg.lol Address",
+      "type": "text",
+      "placeholder": "tom"
+    },
+    {
+      "name": "inputApiKey",
+      "prompt": "API Key",
+      "type": "text",
+      "placeholder": "From home.omg.lol/account"
+    }
+  ]
+}
