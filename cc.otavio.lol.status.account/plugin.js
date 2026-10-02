@@ -108,10 +108,11 @@ function composeStatus() {
       {
         name: "mastodon",
         label: "Mastodon",
+        icon: "arrow.triangle.branch",
         defaultValue: "post",
         choices: [
-          { value: "post", label: "Cross-post to Mastodon", icon: "arrow.triangle.branch" },
-          { value: "skip", label: "Don't cross-post", icon: "nosign" }
+          { value: "post", label: "Cross-post", description: "Also share on your linked Mastodon account", icon: "arrow.triangle.branch" },
+          { value: "skip", label: "Skip", description: "Only post to status.lol", icon: "nosign" }
         ]
       }
     ]
